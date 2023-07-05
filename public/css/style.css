@@ -1,0 +1,99 @@
+body {
+    background-color: #171717;
+    display: grid;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-top: 5vw;
+}
+
+nav {
+    padding: 1vh;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: black;
+}
+
+ul.navwrap {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+ul.navwrap li {float: left;}
+ul.navwrap li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 0 1vh;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    color: white;
+    margin: auto;
+}
+th,
+td {
+padding: 40px;
+text-align: center;
+border: 1px solid #A5B4FC;
+}
+th {
+font-size: 1.5em;
+color: #A5B4FC;
+}
+td {
+font-size: 1.2em;
+}
+
+input, select {
+    display: block;
+    padding: 1vh;
+    margin: 0.5vh;
+}
+.form_container {
+    font-size: 2vh;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.form_wrap {
+    margin: 0 3vh;
+}
+
+.form_container h1 {
+    text-align: center;
+    color: #A7C7E7;
+}
+
+.btnwrap {
+    text-align: center;
+}
+
+button {
+    width: 75%;
+    padding: 1em;
+    margin: 2em 0;
+    border: 0;
+    border-radius: 30px;
+    background: #db5856;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}
+
+footer {
+    padding: 1vh;
+    color : white;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
