@@ -49,7 +49,6 @@ db.all(allMovies, [], (err, rows) => {
     return console.error(err.message);
   }
   movies = rows;
-  console.log(movies);
 });
 
 db.all(allgens, [], (err, rows) => {
@@ -73,8 +72,23 @@ router.get("/", (req, res) => {
     }
     movies = rows;
   });
+
+  db.all(allgens, [], (err, rows) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  peoples = rows;
+  });
+
+  db.all(alltags, [], (err, rows) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  tags = rows;
+});
   res.render("films.ejs", { movies: movies, peoples: peoples, tags: tags});
 });
+
 
 router.get("/new", (req, res) => {
   res.render("newFilm.ejs", { peoples: peoples, tags: tags});
@@ -89,7 +103,6 @@ router.post('/addFilm', (req, res) => {
       console.log("Nouvelle ligne!");
     } );
   res.render("films.ejs", { movies: movies, peoples: peoples, tags: tags});
-  console.log(movies);
 })
 
 router.post('/addgenre', (req, res) => {
@@ -118,13 +131,51 @@ router.get("/tirajosaure", (req, res) => {
   res.render("tirajosaure.ejs", { peoples: peoples, tags: tags});
 });
 
-// const sql = `DELETE FROM movies WHERE title = "Fight Club =))"`;
+let persons = "";
+let genres = "";
+let output = [];
 
-// db.run(sql, [], (err) => {
+router.post("/randomfilm", (req, res) => {
+
+for (let index = 0; index < req.body.stb.length; index++) {
+  if (persons == "") {
+    persons = persons + "(stb_id = " + req.body.stb[index] + ")";
+  } else {
+  persons = persons + " OR (stb_id = " + req.body.stb[index] + ")";
+}
+}
+  
+for (let index = 0; index < req.body.tag.length; index++) {
+  if (genres == "") {
+    genres = genres + "(tag_id = " + req.body.tag[index] + ")";
+  } else {
+    genres = genres + " OR (tag_id = " + req.body.tag[index] + ")";
+  }
+}
+
+let moviesearch = `SELECT * FROM movies WHERE (${persons}) AND (${genres})`;
+console.log(moviesearch);
+
+db.all(moviesearch, [], (err, rows) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  output = rows;
+});
+
+res.send(output)
+
+// res.render("newView.ejs", { output: output, peoples: peoples, tags: tags});
+// nouveau rendu, en utilisant les résultats de la requete, envoyée en async ??
+});
+
+// const sql = `SELECT * FROM movies WHERE ((stb_id = 3) or (stb_id = 1)) AND ((tag_id = 3))`;
+
+// db.all(sql, [], (err, rows) => {
 //   if (err) {
 //     console.error(err.message);
 //   }
-//     console.log("Nouvelle ligne!");
+//     console.log(rows);
 //   } );
 
 // db.close((err) => {

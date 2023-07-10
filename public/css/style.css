@@ -1,6 +1,5 @@
 body {
     background-color: #171717;
-    display: grid;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-top: 5vw;
 }
@@ -49,11 +48,12 @@ td {
 font-size: 1.2em;
 }
 
-input, select {
+.form_wrap input, select {
     display: block;
     padding: 1vh;
     margin: 0.5vh;
 }
+
 .form_container {
     font-size: 2vh;
     width: 50%;
