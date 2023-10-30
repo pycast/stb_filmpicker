@@ -9,7 +9,7 @@
   <% movies.forEach(movie => { %>
   <tr>
     <td><%= movie.title %></td>
-    <td><%= peoples.find(p => p.stb_id === movie.stb_id).name %></td>
+    <td><%= peoples.find(p => p.person_id === movie.person_id).name %></td>
     <td><%= tags.find(t => t.tag_id === movie.tag_id).genre %></td>
   </tr>
   <% }) %>

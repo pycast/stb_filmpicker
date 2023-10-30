@@ -18,15 +18,15 @@ let db = new sqlite3.Database("movies.db", (err) => {
 db.run(`CREATE TABLE IF NOT EXISTS movies (
   movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
-  stb_id INTEGER NOT NULL,
+  person_id INTEGER NOT NULL,
   tag_id INTEGER NOT NULL,
-  FOREIGN KEY (stb_id) REFERENCES stbpotes(stb_id),
+  FOREIGN KEY (person_id) REFERENCES persons(person_id),
   FOREIGN KEY (tag_id) REFERENCES tags(tag_id)
 )`);
 
 db.run(
-  `CREATE TABLE IF NOT EXISTS stbpotes(
-  stb_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  `CREATE TABLE IF NOT EXISTS persons(
+  person_id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT UNIQUE
 )`
 );
@@ -39,7 +39,7 @@ db.run(`CREATE TABLE IF NOT EXISTS tags (
 const allMovies = "SELECT * FROM movies";
 let movies = [];
 
-const allgens = "SELECT * FROM stbpotes";
+const allgens = "SELECT * FROM persons";
 let peoples = [];
 
 const alltags = "SELECT * FROM tags";
@@ -95,8 +95,8 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/addFilm", (req, res) => {
-  const sql = `INSERT INTO movies (title, stb_id, tag_id) VALUES (?, ?, ?)`;
-  db.run(sql, [req.body.title, req.body.stbperson, req.body.genre], (err) => {
+  const sql = `INSERT INTO movies (title, person_id, tag_id) VALUES (?, ?, ?)`;
+  db.run(sql, [req.body.title, req.body.person, req.body.genre], (err) => {
     if (err) {
       console.error(err.message);
     }
@@ -116,9 +116,9 @@ router.post("/addgenre", (req, res) => {
   res.render("newFilm.ejs", { peoples: peoples, tags: tags });
 });
 
-router.post("/addstb", (req, res) => {
-  const sql = `INSERT INTO stbpotes (name) VALUES (?)`;
-  db.run(sql, [req.body.stb], (err) => {
+router.post("/addperson", (req, res) => {
+  const sql = `INSERT INTO persons (name) VALUES (?)`;
+  db.run(sql, [req.body.person], (err) => {
     if (err) {
       console.error(err.message);
     }
@@ -136,11 +136,11 @@ let genres = "";
 let output = [];
 
 router.post("/randomfilm", (req, res) => {
-  for (let index = 0; index < req.body.stb.length; index++) {
+  for (let index = 0; index < req.body.person.length; index++) {
     if (persons == "") {
-      persons = persons + "(stb_id = " + req.body.stb[index] + ")";
+      persons = persons + "(person_id = " + req.body.person[index] + ")";
     } else {
-      persons = persons + " OR (stb_id = " + req.body.stb[index] + ")";
+      persons = persons + " OR (person_id = " + req.body.person[index] + ")";
     }
   }
 
