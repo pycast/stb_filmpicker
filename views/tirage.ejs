@@ -1,0 +1,28 @@
+<%- include("head") -%>
+
+<div class="form_container">
+  <h1>Tirage</h1>
+  <form action="randomFilm" method="post">
+    <h2>Personnes présentes :</h2>
+    <% peoples.forEach(people => { %>
+    <input type="checkbox" name="stb" id="stb" value="<%= people.stb_id %>" />
+    <label for="stb"><%= people.name %></label>
+    <% }) %>
+    <h2>Genre souhaité</h2>
+    <input type="checkbox" name="tag" id="tag_osef" value="osef" />
+    <label for="stb">OSEF</label>
+    <% tags.forEach(tag => { %>
+    <input type="checkbox" name="tag" id="tag" value="<%= tag.tag_id %>" />
+    <label for="stb"><%= tag.genre %></label>
+    <% }) %>
+    <!-- <h2>Combien de films ??</h2>
+    <input type="range" id="points" name="points" min="1" max="5" /><span
+      id="val"
+    ></span> -->
+    <div class="btnwrap">
+      <button class="btn" type="submit">Rouler la roue !!!</button>
+    </div>
+  </form>
+</div>
+
+<%- include("footer") -%>

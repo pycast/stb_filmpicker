@@ -1,0 +1,18 @@
+<%- include("head") -%>
+
+<table>
+  <tr>
+    <th>Film</th>
+    <th>Proposé par</th>
+    <th>Genre</th>
+  </tr>
+  <% results.forEach(result => { %>
+  <tr>
+    <td><%= result.title %></td>
+    <td><%= peoples.find(p => p.stb_id === result.stb_id).name %></td>
+    <td><%= tags.find(t => t.tag_id === result.tag_id).genre %></td>
+  </tr>
+  <% }) %>
+</table>
+
+<%- include("footer") -%>

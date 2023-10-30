@@ -1,24 +1,18 @@
 <%- include("head") -%>
 
 <table>
-    <tr>
-        <th>Film</th>
-        <th>Proposé par</th>
-        <th>Genre</th>
-    </tr>
-    <% movies.forEach(movie => { %>
-        <tr>
-            <td>
-                <%= movie.title %>
-            </td>
-            <td>
-                <%= peoples.find(p => p.stb_id === movie.stb_id).name %>
-            </td>
-            <td>
-                <%= tags.find(t => t.tag_id === movie.tag_id).genre %>
-            </td>
-        </tr>
-    <% }) %>
+  <tr>
+    <th>Film</th>
+    <th>Proposé par</th>
+    <th>Genre</th>
+  </tr>
+  <% movies.forEach(movie => { %>
+  <tr>
+    <td><%= movie.title %></td>
+    <td><%= peoples.find(p => p.stb_id === movie.stb_id).name %></td>
+    <td><%= tags.find(t => t.tag_id === movie.tag_id).genre %></td>
+  </tr>
+  <% }) %>
 </table>
 
 <%- include("footer") -%>

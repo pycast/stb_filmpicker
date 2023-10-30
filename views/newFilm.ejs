@@ -1,54 +1,59 @@
 <%- include("head") -%>
 
 <div class="form_container">
-    <div class="form_wrap">
-        <h1>Movie night</h1>
-        <form action ="addFilm" method="post">
-            <div class="moviename">
-                <label for="movie">Nom du film :</label>
-                <input type="text" id="movie_name" placeholder="Fight Club XD" name="title"/>
-            </div>
-            <div class="stbpotename">
-                <label for="stbperson">Proposition de</label>
-                <select name="stbperson" id="stbpote">
-                    <option value="T ki" disabled>VOUS ETES QUI</option>
-                    <% peoples.forEach(people => { %>
-                        <option value="<%= people.stb_id %>"><%= people.name %></option>
-                    <% }) %>
-                </select>
-            </div>
-            <div class="genres_wrap">
-                <label for="genre">Genre :</label>
-                <div>
-                    <select name="genre" id="genre">
-                    <option value="ckoi" disabled>GENRE</option>
-                    <% tags.forEach(tag => { %>
-                        <option value="<%= tag.tag_id %>"><%= tag.genre %></option>
-                    <% }) %>
-                </select>
-                </div>   
-            </div>
-            <div class="btnwrap">
-                <button class="btn" type="submit">Proposer</button>
-            </div>
-        </form>
+  <div class="form_wrap">
+    <h1>Movie night</h1>
+    <form action="addFilm" method="post">
+      <div class="moviename">
+        <label for="movie">Nom du film :</label>
+        <input
+          type="text"
+          id="movie_name"
+          placeholder="Fight Club XD"
+          name="title"
+        />
+      </div>
+      <div class="stbpotename">
+        <label for="stbperson">Proposition de</label>
+        <select name="stbperson" id="stbpote">
+          <option value="QUI" disabled>VOUS ETES QUI</option>
+          <% peoples.forEach(people => { %>
+          <option value="<%= people.stb_id %>"><%= people.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="genres_wrap">
+        <label for="genre">Genre :</label>
+        <div>
+          <select name="genre" id="genre">
+            <option value="Quel genre???" disabled>GENRE</option>
+            <% tags.forEach(tag => { %>
+            <option value="<%= tag.tag_id %>"><%= tag.genre %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+      <div class="btnwrap">
+        <button class="btn" type="submit">Proposer</button>
+      </div>
+    </form>
 
-        <h2>Nouveau Genre</h2>
-        <form action="addgenre" method="post">
-            <input type="text" id="genre" placeholder="Pétoche =)" name="genre"/>
-            <div class="btnwrap">
-                <button class="btn" type="submit">Proposer</button>
-            </div>
-        </form>
-        
-        <h2>Nouveau STBébou</h2>
-        <form action="addstb" method="post">
-            <input type="text" id="stb" placeholder="Jerma985" name="stb"/>
-            <div class="btnwrap">
-                <button class="btn" type="submit">Proposer</button>
-            </div>
-        </form>
-    </div>
+    <h2>Nouveau Genre</h2>
+    <form action="addgenre" method="post">
+      <input type="text" id="genre" placeholder="Horreur" name="genre" />
+      <div class="btnwrap">
+        <button class="btn" type="submit">Proposer</button>
+      </div>
+    </form>
+
+    <h2>Nouvelle personne</h2>
+    <form action="addstb" method="post">
+      <input type="text" id="stb" placeholder="Jerma985" name="stb" />
+      <div class="btnwrap">
+        <button class="btn" type="submit">Ajouter une personne</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <%- include("footer") -%>
